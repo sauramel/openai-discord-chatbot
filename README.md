@@ -15,7 +15,7 @@ A reimagined Discord bot that utilizes the OpenAI API for interactions, preserve
 ```bash
 git clone <repository_url>
 cd <repository_name>
-\```
+```
 
 ### 2. Install the Dependencies:
 
