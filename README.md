@@ -13,8 +13,8 @@ A reimagined Discord bot that utilizes the OpenAI API for interactions, preserve
 ### 1. Clone the Repository:
 
 ```bash
-git clone <repository_url>
-cd <repository_name>
+git clone https://github.com/sauramel/openai-discord-chatbot
+cd openai-discord-chatbot
 ```
 
 ### 2. Install the Dependencies:
@@ -29,10 +29,13 @@ pip install -r requirements.txt
 
 Modify the `config.json` template provided in the project files:
 
-- `TOKEN`: Your Discord Bot token.
-- `OPENAI_API_KEY`: Your OpenAI API key.
-- `OPENAI_MODEL`: The OpenAI model you wish to use (default is `gpt-3.5-turbo-16k` but can be changed).
-- Other configurations as required.
+
+    TOKEN: "YOUR DISCORD BOT TOKEN"
+    OPENAI_API_KEY: "YOUR OPENAI API TOKEN"
+    MAX_CACHE: 5 - NUMBER OF MESSAGES TO REMEMBER
+    "COOLDOWN_TIME": 2 - SECONDS TO WAIT BEFORE ACCEPTING A RESPONSE FROM THE USER
+    "ROLE_ID": "DISCORD ROLE ID THAT BOT WILL RESPOND TO"
+    "OPENAI_MODEL": "gpt-3.5-turbo-16k" - MODEL
 
 ### 4. Define Your Bot's Persona:
 
@@ -40,13 +43,13 @@ Edit the `system_message.txt` file to set the bot's introductory message or pers
 
 ### 5. Run the Bot:
 ```bash
-python <name_of_main_script>.py
+python chatbot.py
 ```
 
 ## Notes
 
 - This bot's design integrates with models such as `gpt-3.5-turbo-16k` for its balance between cost and context window. However, you can configure it to use other models as per your requirements.
-- Much of the development insights for this project were derived from interactions with ChatGPT.
+- Most of the code for this project was derived from interactions with ChatGPT.
 
 ## License
 
