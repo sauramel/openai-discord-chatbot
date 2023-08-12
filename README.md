@@ -19,7 +19,7 @@ This project enables you to deploy a Discord bot powered by OpenAI's GPT-3.5 mod
 
 1. **Prepare `system_message.txt` Configuration**: Create a `system_message.txt` file on your system. This file provides context to the bot about its behavior during conversations. Define the bot's persona or guidelines on how it should interact.
 
-2. **Run the Docker Container**:
+2a. **Run the Docker Container**:
 ```bash
 docker run \
 -e DISCORD_BOT_TOKEN="YOUR_DISCORD_BOT_TOKEN" \
@@ -30,6 +30,24 @@ docker run \
 -e OPENAI_MODEL="MODEL_NAME" \
 -v /path/to/your/system_message.txt:/openai-discord-chatbot/system_message.txt \
 sauramello/openai-discord-chatbot
+```
+
+2b. **Use Docker Compose**:
+```bash
+version: '3.3'
+services:
+    openai-discord-chatbot:
+        image: sauramello/openai-discord-chatbot
+        container_name: openai-discord
+        environment:
+            - DISCORD_BOT_TOKEN= #Your Discord bot's token (see: https://discord.com/developers/applications)
+            - OPENAI_API_KEY= #Your secret API key (see: https://platform.openai.com/account/api-keys)
+            - MAX_CACHE= #Number of messages to remember for context
+            - COOLDOWN_TIME= #Seconds to wait until the bot responds
+            - ROLE_ID= #The role ID that the bot will only respond to
+            - OPENAI_MODEL=gpt-3.5-turbo-16k #Default (see: https://platform.openai.com/docs/models)
+        volumes:
+            - '/directory/to/system_message.txt:/openai-discord-chatbot/system_message.txt'
 ```
 
 ### Configuring the Bot's Behavior with `system_message.txt`
