@@ -5,21 +5,19 @@ from collections import defaultdict, deque
 import asyncio
 from datetime import datetime, timedelta
 import json
+import os
 
 # Logging setup
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Load configurations from the config.json file
-with open('config.json', 'r') as f:
-    config = json.load(f)
-
-TOKEN = config["TOKEN"]
-OPENAI_API_KEY = config["OPENAI_API_KEY"]
-ROLE_ID = int(config["ROLE_ID"])
-MAX_CACHE = config["MAX_CACHE"]
-COOLDOWN_TIME = config["COOLDOWN_TIME"]
-OPENAI_MODEL = config["OPENAI_MODEL"]
+# Load configurations from environment variables
+TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+MAX_CACHE = int(os.environ.get('MAX_CACHE', 5))
+COOLDOWN_TIME = int(os.environ.get('COOLDOWN_TIME', 2))
+ROLE_ID = int(os.environ.get('ROLE_ID'))
+OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-3.5-turbo-16k')
 
 # Data structures for caching, cooldown, and last interaction
 user_message_cache = defaultdict(deque)

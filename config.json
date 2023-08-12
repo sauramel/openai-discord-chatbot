@@ -1,9 +1,0 @@
-{
-    "TOKEN": "DISCORD_BOT_TOKEN",
-    "OPENAI_API_KEY": "OPENAI_API_KEY",
-    "MAX_CACHE": 5,
-    "COOLDOWN_TIME": 2,
-    "ROLE_ID": "00000000000000001",
-    "OPENAI_MODEL": "gpt-3.5-turbo-16k"
-}
-
