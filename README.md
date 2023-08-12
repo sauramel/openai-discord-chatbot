@@ -9,34 +9,29 @@ This project enables you to deploy a Discord bot powered by OpenAI's GPT-3.5 mod
 3. **Dynamic Message Caching**: Retains the context of the conversation, improving conversational flow.
 4. **Model Flexibility**: The bot, by default, uses the GPT-3.5 Turbo-16k model for a balance of cost efficiency and extended context. However, you have the freedom to choose other OpenAI models as per your preferences.
 
+## Prerequisites:
 
-## Getting Started:
+- Docker installed on your machine/server.
+- An OpenAI API Key.
+- A Discord Bot Token.
 
-### 1. Clone the Repository:
+## Quick Start:
 
-```bash
-git clone https://github.com/sauramel/openai-discord-chatbot
-cd openai-discord-chatbot
-```
+1. **Prepare `system_message.txt` Configuration**: Create a `system_message.txt` file on your system. This file provides context to the bot about its behavior during conversations. Define the bot's persona or guidelines on how it should interact.
 
-### 2. Docker Deployment:
-Building the Docker image:
-```bash
-docker build -t sauramello/openai-discord-chatbot .
-```
-Running the Docker container:
-Replace the placeholders with your actual tokens and desired configuration.
+2. **Run the Docker Container**:
 ```bash
 docker run \
 -e DISCORD_BOT_TOKEN="YOUR_DISCORD_BOT_TOKEN" \
--e OPENAI_API_KEY="YOUR_OPENAI_API_KEY" \
--e MAX_CACHE=YOUR_DESIRED_NUMBER_FOR_MESSAGE_CACHE \
--e COOLDOWN_TIME=YOUR_DESIRED_COOLDOWN_TIME_IN_SECONDS \
--e ROLE_ID="YOUR_DISCORD_ROLE_ID_THAT_BOT_WILL_RESPOND_TO" \
--e OPENAI_MODEL="YOUR_CHOSEN_OPENAI_MODEL" \
--v /path/on/your/host/system_message.txt:/openai-discord-chatbot/system_message.txt \
+-e OPENAI_API_KEY="YOUR_OPENAI_API_TOKEN" \
+-e MAX_CACHE=NUMBER_OF_MESSAGES_TO_REMEMBER \
+-e COOLDOWN_TIME=SECONDS_TO_WAIT_BEFORE_RESPONDING \
+-e ROLE_ID="DISCORD_ROLE_ID_BOT_RESPONDS_TO" \
+-e OPENAI_MODEL="MODEL_NAME" \
+-v /path/to/your/system_message.txt:/openai-discord-chatbot/system_message.txt \
 sauramello/openai-discord-chatbot
 ```
+
 ### Configuring the Bot's Behavior with `system_message.txt`
 
 The `system_message.txt` file is crucial for informing the bot about its behavior, tone, and interaction style. While this message is not directly passed to the users, it provides context to the bot about how it should respond, behave, and interact during the conversation.
